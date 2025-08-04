@@ -1,25 +1,35 @@
-export const dynamic = 'force-dynamic';
+
+import { notFound } from 'next/navigation';
+import React from 'react';
+
+export const dynamicParams = true; // default val = true
+
+const generateStaticParams = async () => {
+  const res = await fetch('http://localhost:4000/tickets');
+  const tickets = await res.json();
+  return tickets.map((ticket) => ({
+    id: ticket.id.toString(),
+  }));
+};
+
 
 const getTicket = async (id) => {
   const res = await fetch(`http://localhost:4000/tickets/${id}`, {
     next: {
       revalidate: 60,
     },
+
+    // cache: 'force-cache',
   });
-  if (!res.ok) throw new Error('Failed to fetch ticket');
+  if (!res.ok) {
+    notFound();
+  }
   return res.json();
 };
 
-// export async function generateStaticParams() {
-//   // Optional: preload paths if using SSG
-//   return [];
-// }
+export default async function Ticket({ params }) {
+  const ticket = await getTicket(params.id);
 
-// ✅ FIX: Use a named async function
-export default async function TicketDetails({ params }) {
-  const { id } = await Promise.resolve(params);
-
-  const ticket = await getTicket(id);
   return (
     <main>
       <nav>

@@ -1,7 +1,9 @@
 import React from 'react';
 import TicketList from './TicketList';
 
-const Tickets = () => {
+
+export default function Tickets() {
+
   return (
     <main>
       <nav>
@@ -15,6 +17,4 @@ const Tickets = () => {
       <TicketList />
     </main>
   );
-};
 
-export default Tickets;
