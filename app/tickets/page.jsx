@@ -1,7 +1,9 @@
 import React from 'react';
 import TicketList from './TicketList';
 
+
 export default function Tickets() {
+
   return (
     <main>
       <nav>
@@ -15,4 +17,4 @@ export default function Tickets() {
       <TicketList />
     </main>
   );
-}
+

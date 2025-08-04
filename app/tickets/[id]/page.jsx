@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import React from 'react';
 
@@ -11,11 +12,13 @@ const generateStaticParams = async () => {
   }));
 };
 
+
 const getTicket = async (id) => {
   const res = await fetch(`http://localhost:4000/tickets/${id}`, {
     next: {
       revalidate: 60,
     },
+
     // cache: 'force-cache',
   });
   if (!res.ok) {
@@ -26,6 +29,7 @@ const getTicket = async (id) => {
 
 export default async function Ticket({ params }) {
   const ticket = await getTicket(params.id);
+
   return (
     <main>
       <nav>
