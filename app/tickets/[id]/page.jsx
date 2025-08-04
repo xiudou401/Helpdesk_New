@@ -1,4 +1,4 @@
-import React from 'react';
+export const dynamic = 'force-dynamic';
 
 const getTicket = async (id) => {
   const res = await fetch(`http://localhost:4000/tickets/${id}`, {
@@ -6,10 +6,19 @@ const getTicket = async (id) => {
       revalidate: 60,
     },
   });
+  if (!res.ok) throw new Error('Failed to fetch ticket');
   return res.json();
 };
 
-const TicketDetails = async ({ params: { id } }) => {
+// export async function generateStaticParams() {
+//   // Optional: preload paths if using SSG
+//   return [];
+// }
+
+// ✅ FIX: Use a named async function
+export default async function TicketDetails({ params }) {
+  const { id } = await Promise.resolve(params);
+
   const ticket = await getTicket(id);
   return (
     <main>
@@ -26,6 +35,4 @@ const TicketDetails = async ({ params: { id } }) => {
       </div>
     </main>
   );
-};
-
-export default TicketDetails;
+}
