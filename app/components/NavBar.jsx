@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-
 export default function NavBar() {
-
   return (
     <nav>
       <h1>Dojo Helpdesk</h1>
@@ -11,3 +9,4 @@ export default function NavBar() {
       <Link href="/tickets">Tickets</Link>
     </nav>
   );
+}

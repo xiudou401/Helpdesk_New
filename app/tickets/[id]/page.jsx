@@ -1,17 +1,14 @@
-
 import { notFound } from 'next/navigation';
-import React from 'react';
 
-export const dynamicParams = true; // default val = true
+// export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
 
-const generateStaticParams = async () => {
+export async function generateStaticParams() {
   const res = await fetch('http://localhost:4000/tickets');
   const tickets = await res.json();
-  return tickets.map((ticket) => ({
-    id: ticket.id.toString(),
-  }));
-};
 
+  return tickets.map((ticket) => ({ id: ticket.id }));
+}
 
 const getTicket = async (id) => {
   const res = await fetch(`http://localhost:4000/tickets/${id}`, {
@@ -21,9 +18,7 @@ const getTicket = async (id) => {
 
     // cache: 'force-cache',
   });
-  if (!res.ok) {
-    notFound();
-  }
+  if (!res.ok) notFound();
   return res.json();
 };
 
