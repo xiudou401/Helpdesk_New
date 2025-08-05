@@ -1,9 +1,16 @@
-
 import { notFound } from 'next/navigation';
 import React from 'react';
-import { resolve } from 'styled-jsx/css';
 
 export const dynamicParams = true; // default val = true
+
+export async function generateMetadata({ params }) {
+  const id = params.id;
+  const res = await fetch(`http://localhost:4000/tickets/${id}`);
+  const ticket = await res.json();
+  return {
+    title: `Dojo Helpdesk | ${ticket.title}`,
+  };
+}
 
 const generateStaticParams = async () => {
   const res = await fetch('http://localhost:4000/tickets');
@@ -12,7 +19,6 @@ const generateStaticParams = async () => {
     id: ticket.id.toString(),
   }));
 };
-
 
 const getTicket = async (id) => {
   await new Promise((resolve) => setTimeout(resolve, 3000));
