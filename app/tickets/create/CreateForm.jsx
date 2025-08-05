@@ -58,7 +58,7 @@ export default function CreateForm() {
           <option value="high">High Priority</option>
         </select>
       </label>
-      <button>
+      <button className="btn-primary" disabled={isLoading}>
         {isLoading ? <span>Adding</span> : <span>Add Ticket</span>}
       </button>
     </form>
