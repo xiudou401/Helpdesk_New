@@ -4,7 +4,7 @@ import AuthForm from '../AuthForm';
 export default function Login() {
   const handleSubmit = async (e, email, password) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
   };
   return (
     <main>
