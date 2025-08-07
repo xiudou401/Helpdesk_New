@@ -5,9 +5,10 @@ import { NextResponse } from 'next/server';
 export async function GET(request) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
-
+  console.log(request.url);
+  console.log(code);
   if (code) {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const supabase = createRouteHandlerClient({ cookies: () => cookieStore });
     await supabase.auth.exchangeCodeForSession(code);
   }
