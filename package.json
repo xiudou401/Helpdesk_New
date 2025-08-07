@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@tailwindcss/postcss": "^4.1.11",
     "eslint": "9.32.0",
     "eslint-config-next": "15.4.5",
@@ -20,6 +21,7 @@
     "@types/node": "24.1.0",
     "@types/react": "19.1.9",
     "autoprefixer": "^10.4.19",
+    "encoding": "^0.1.13",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.1"
   }
